@@ -1,7 +1,7 @@
-version: "4.0"
+version: 4
 
 build:
-  os: "ubuntu-22.04"
+  os: "ubuntu-lts-latest"
   tools:
     python: "3.10"
 
