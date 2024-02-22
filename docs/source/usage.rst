@@ -10,7 +10,21 @@ To use Lumache, first install it using pip:
 
 .. code-block:: console
 
-   (.venv) $ pip install lumache
+   (.venv) $ pip install nsforest
+
+   conda activate nsforest
+
+Running NSForest
+
+.. code-block:: console
+
+   (.env) $ python3 nsforest -a ${input_folder}/arguments_${prefix}.csv 
+
+Parallelizing NSForest
+
+.. code-block:: console
+
+   (.env) $ python3 nsforest -a ${input_folder}/arguments_${prefix}.csv -c "${cluster}"
 
 Creating recipes
 ----------------
