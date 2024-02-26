@@ -26,6 +26,8 @@ Parallelizing NSForest
 
    (.env) $ python3 nsforest -a ${input_folder}/arguments_${prefix}.csv -c "${cluster}"
 
+.. autofunction:: nsforest.NSForest
+
 Creating recipes
 ----------------
 
