@@ -1,4 +1,4 @@
-Usage
+Test_test
 =====
 
 .. _installation:
@@ -6,7 +6,7 @@ Usage
 Installation
 ------------
 
-To use Lumache, first install it using pip:
+To use test_test, first install it using pip:
 
 .. code-block:: console
 
