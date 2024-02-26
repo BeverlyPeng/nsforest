@@ -13,3 +13,7 @@ To use test_test, first install it using pip:
    (.venv) $ pip install nsforest
 
    conda activate nsforest
+
+.. autofunction:: nsforest
+
+.. autofunction:: nsforest.NSForest
