@@ -1,7 +1,7 @@
 Test_test
 =====
 
-.. _installation:
+.. _install:
 
 Installation
 ------------
