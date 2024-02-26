@@ -16,7 +16,16 @@ def NSForest(adata, cluster_header, cluster_list=None,
              medians_header = None, binary_scores_header = None, gene_selection=None,
              n_trees=1000, n_jobs=-1, beta=0.5, n_top_genes=15, n_binary_genes=10, n_genes_eval=6,
              output_folder="NSForest_outputs/", outputfilename="default"):
-    
+
+    """
+    Performs NSForest algorithm to find an optimal list of marker genes. 
+
+    :param adata: scanpy h5ad object
+    :type adata: anndata
+    :return: 
+    :rtype: list[str]
+    """
+               
     ## set up output folder
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
