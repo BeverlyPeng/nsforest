@@ -16,9 +16,7 @@ To use Lumache, first install it using pip:
 
 Running NSForest
 
-.. code-block:: console
-
-   (.env) $ python3 nsforest -a ${input_folder}/arguments_${prefix}.csv 
+.. autofunction:: nsforest.NSForest
 
 Parallelizing NSForest
 
