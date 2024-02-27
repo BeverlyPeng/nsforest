@@ -15,3 +15,5 @@ To use test_test, first install it using pip:
    conda activate nsforest
 
 .. autofunction:: nsforest.NSForest
+
+.. autofunction:: nsforest.NSForest
