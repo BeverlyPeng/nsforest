@@ -7,6 +7,6 @@ dependencies:
   - pip: 
     - numpy
     - pandas
-    # - itertools
+    - itertools
     - time
     - tqdm
