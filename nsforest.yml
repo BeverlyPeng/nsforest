@@ -1,0 +1,12 @@
+name: nsforest
+channels: 
+  - conda-forge
+dependencies: 
+  - python
+  - scanpy
+  - pip: 
+    - numpy
+    - pandas
+    - itertools
+    - time
+    - tqdm
