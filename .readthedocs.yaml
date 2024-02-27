@@ -5,6 +5,9 @@ build:
   tools:
     python: "3.8"
 
+conda:
+  environment: nsforest.yml
+
 python:
   install:
     - requirements: docs/requirements.txt
