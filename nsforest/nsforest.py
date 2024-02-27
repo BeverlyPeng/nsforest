@@ -18,10 +18,36 @@ def NSForest(adata, cluster_header = None, medians_header = None, binary_scores_
     """
     Performs NSForest algorithm to find an optimal list of marker genes. 
 
-    :param adata: scanpy h5ad object
-    :type adata: anndata
-    :return: 
-    :rtype: list[str]
+    Parameters
+    ----------
+    adata
+        Annotated data matrix.
+    cluster_header
+        Column name in `adata`'s `.obs` representing cell annotation.
+    medians_header
+        medians_header. 
+    binary_scores_header
+        binary_scores_header. 
+    cluster_list
+        cluster_list. 
+    gene_selection
+        gene_selection.
+    n_trees
+        n_trees. 
+    n_jobs
+        n_jobs. 
+    beta
+        beta. 
+    n_top_genes
+        n_top_genes. 
+    n_binary_genes
+        n_binary_genes. 
+    n_genes_eval
+        n_genes_eval. 
+    output_folder
+        output_folder. 
+    outputfilename
+        outputfilename. 
     """
 
     ##-----
