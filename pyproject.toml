@@ -1,8 +1,21 @@
-[build-system]
-requires = ["flit_core >=3.2,<4"]
-build-backend = "flit_core.buildapi"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api" 
 
-[project]
-name = "lumache"
-authors = [{name = "Graziella", email = "graziella@lumache"}]
-dynamic = ["version", "description"]
+[tool.poetry]
+name = "nsforest"
+version = "4.0.0"
+description =  "A machine learning method for the discovery of minimum marker gene combinations for cell type identification from single-cell RNA sequencing"
+license = "MIT"
+authors = [
+    "Renee Zhang <zhangy@jcvi.org>",
+    "Richard Scheuermann <RScheuermann@jcvi.org>",
+    "Brian Aevermann <baevermann@chanzuckerberg.com>"
+]
+maintainers = [
+    "Tian Liu <ttl074@ucsd.edu>"
+]
+# readme = "README.md"
+
+[tool.poetry.dependencies]
+scanpy = "^1.9.3"
+python = "^3.8"
