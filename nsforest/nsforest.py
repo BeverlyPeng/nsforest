@@ -9,6 +9,13 @@ import os
 import myrandomforest
 import mydecisiontreeevaluation
 
+test = """\
+output_folder
+    Name of kind of values in X.
+outputfilename
+    The kind of thing the variables are.\
+"""
+
 # v4.0 includes new parameter, "gene_selection," which determines whether BinaryFirst is used or not and its cutoff value
 def NSForest(adata, cluster_header = None, medians_header = None, binary_scores_header = None, 
              cluster_list = None, gene_selection = "BinaryFirst_high",
@@ -44,10 +51,7 @@ def NSForest(adata, cluster_header = None, medians_header = None, binary_scores_
         n_binary_genes. 
     n_genes_eval
         n_genes_eval. 
-    output_folder
-        output_folder. 
-    outputfilename
-        outputfilename. 
+    {test}
     """
 
     ##-----
