@@ -1,12 +1,12 @@
-Test_test
-=========
+NSForest
+========
 
 .. _install:
 
 Installation
 ------------
 
-To use test_test, first install it using pip:
+To use NSForest, first install it using pip:
 
 .. code-block:: console
 
