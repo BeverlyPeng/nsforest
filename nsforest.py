@@ -2,6 +2,7 @@
 ### Libraries ###
 import os
 import sys
+import scanpy as sc
 
 # v4.0 includes new parameter, "gene_selection," which determines whether BinaryFirst is used or not and its cutoff value
 def NSForest(variable):
