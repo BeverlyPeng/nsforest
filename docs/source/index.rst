@@ -21,5 +21,5 @@ Contents
 .. toctree::
 
    usage
-   test_test
+   nsforest
    api
