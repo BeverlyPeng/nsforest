@@ -11,6 +11,8 @@ python:
     # Install our python package before building the docs
     - method: pip
       path: .
+      extra_requirements: 
+        - pandas
 
 sphinx:
   configuration: docs/source/conf.py
