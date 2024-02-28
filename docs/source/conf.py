@@ -3,19 +3,20 @@
 import os
 import sys
 
-# sys.path.insert(0, os.path.abspath("../../.."))
-# sys.path.insert(0, os.path.abspath(".."))
-# sys.path.insert(0, os.path.abspath("../.."))
 sys.path.insert(0, os.path.abspath("../../nsforest"))
 
 # -- Project information
 
-project = 'Lumache'
-copyright = '2021, Graziella'
-author = 'Graziella'
+project = 'NSForest'
+authors = [
+    "Renee Zhang <zhangy@jcvi.org>",
+    "Richard Scheuermann <RScheuermann@jcvi.org>",
+    "Brian Aevermann <baevermann@chanzuckerberg.com>", 
+    "Angela Liu <aliu@jcvi.org>", 
+    "Beverly Peng <bpeng@jcvi.org">
+]
 
-release = '0.1'
-version = '0.1.0'
+version = '4.0'
 
 # -- General configuration
 
