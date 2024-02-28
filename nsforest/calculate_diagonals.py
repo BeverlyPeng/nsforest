@@ -1,47 +1,101 @@
 
 import pandas as pd
-import utils
 import scanpy as sc
+import utils
 
-# 
-def violin_plot(adata, nsf_results_df, cluster_header): 
+# Calculate ratio of diagonal/total expression
+def on_target_ratio(adata, nsf_results_df, cluster_header, medians_header, output_folder, outputfilename): 
 
-    adata = sc.read_h5ad("demo_data/hlca_core_ann_finest_level_precalculated.h5ad")
-    nsf_results_df = pd.read_csv("outputs_ann_finest_level/ann_finest_level_results.csv")
+    """\
+    Calculating the on-target ratios. 
 
-    # Getting results
-    nsf_results_df = nsf_results_df.dropna()
-    # nsf_results_df['NSForest_markers'] = utils.str_to_list(nsf_results_df['NSForest_markers'])
-    nsf_results_df['NSForest_markers'] = str_to_list(nsf_results_df['NSForest_markers'])
+    Parameters
+    ----------
+    adata
+        Annotated data matrix.
+    nsf_results_df
+        Output dataframe of NSForest. 
+    cluster_header
+        Column in `adata`'s `.obs` representing cell annotation.
+    medians_header
+        Column in `adata`'s `.varm` storing median expression matrix. 
+    output_folder
+        Output folder. 
+    outputfilename
+        Prefix for all output files. 
+    
+    """
 
-    # reorder the clusters based on the dendrogram order
-    dend_header = "dendrogram_" + cluster_header
-    if dend_header not in adata.uns: 
-        sc.tl.dendrogram(adata, groupby=cluster_header)
-    ## obtain dendrogram cluster order
-    dend_order = adata.uns[dend_header].get('categories_ordered')
-    df_dend_order = pd.DataFrame({'clusterName': dend_order})
-    nsf_results_df.index = nsf_results_df['clusterName']
-    nsf_results_df = nsf_results_df.reindex(dend_order)
+    # cluster_header = "ann_finest_level"
+    # medians_header = "medians_" + cluster_header
+    # adata = sc.read_h5ad("demo_data/hlca_core_ann_finest_level_precalculated.h5ad")
+    # nsf_results_df = pd.read_csv("results_hlca_core.csv")
 
-    # store cluster-marker information in a dictionary
+    nsf_results_df["NSForest_markers"] = utils.str_to_list(nsf_results_df["NSForest_markers"])
     markers_dict = dict(zip(nsf_results_df["clusterName"], nsf_results_df["NSForest_markers"]))
     markers = []
-    for key in sorted(markers_dict.keys()): 
+    for key in markers_dict.keys(): 
         markers.extend(markers_dict[key])
-    print(len(markers))
-    print(markers)
 
-    # use scanpy plot function to plot the marker genes
-    sc.pl.stacked_violin(adata, markers, cluster_header, standard_scale = "var", dendrogram = True, save = "_2.png") # change dendrogram=False to dendrogram=True to include dendrogram if you made it!
+    dend_header = "dendrogram_" + cluster_header
+    dend_order = adata.uns[dend_header].get('categories_ordered')
 
-    # sc.pl.dotplot(adata, markers, cluster_header, standard_scale = "var", save = "_2.png")
+    cluster_medians = adata.varm[medians_header].transpose()
+
+    target_clusters, marker_target_exp, marker_total_exp, marker_fraction_values = [], [], [], []
+
+    # loop over clusters in dend_order
+    for key in dend_order:
+        for value in markers_dict[key]:
+            # append target cluster
+            target_clusters.append(key)
+
+            # get marker expression in target cluster
+            target_exp = cluster_medians.loc[key, value]
+            marker_target_exp.append(target_exp)
+
+            # get total expression for maker in all clusters
+            total_exp = cluster_medians.loc[:, value].sum()
+            marker_total_exp.append(total_exp)
+            
+            # get on-target fraction for this marker
+            on_target_fraction = target_exp / total_exp
+            marker_fraction_values.append(on_target_fraction)
+
+    # make new df with target cluster, marker, target exp, total exp, and fraction
+    marker_fraction_df = pd.DataFrame({'target_cluster': target_clusters, 'markerGene': markers, 'target_exp': marker_target_exp, 'total_exp': marker_total_exp, 'fraction': marker_fraction_values})
+    marker_fraction_df.to_csv(output_folder + outputfilename + "_marker_fractions.csv", index=False)
+
+    median_fractions = []
+    for cluster in dend_order:
+        # get rows where target_cluster is cluster
+        cluster_markers = marker_fraction_df[marker_fraction_df['target_cluster'] == cluster]
+        # get median fraction value for this cluster
+        median_fraction = cluster_markers['fraction'].median()
+        median_fractions.append(median_fraction)
+
+    marker_fraction_med_df = pd.DataFrame({'cluster': dend_order, 'median_fraction': median_fractions})
+    marker_fraction_med_df.to_csv(output_folder + outputfilename + "_median_fractions.csv", index=False)
 
     return
 
-# Calculate ratio of diagonal/total expression
-def on_target_ratio(nsf_markers_df, cluster_medians, output_folder, outputfilename): 
+def calculate_diagonals(nsf_markers_df, cluster_medians, output_folder = "outputs/", outputfilename = ""): 
     
+    """\
+    Calculating the diagonals. 
+
+    Parameters
+    ----------
+    nsf_results_df
+        Output dataframe of NSForest. 
+    medians_header
+        Column in `adata`'s `.varm` storing median expression matrix. 
+    output_folder
+        Output folder. 
+    outputfilename
+        Prefix for all output files. 
+    
+    """
 
     marker_list = nsf_markers_df['markerGene']
     clusters = pd.unique(nsf_markers_df['clusterName'])
