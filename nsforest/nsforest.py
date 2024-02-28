@@ -15,7 +15,7 @@ def NSForest(adata, cluster_header = None, medians_header = None, binary_scores_
              n_trees = 1000, n_jobs = -1, beta = 0.5, n_top_genes = 15, n_binary_genes = 10, n_genes_eval = 6,
              output_folder = None, outputfilename = None):
     
-    """
+    """\
     Performs NSForest algorithm to find an optimal list of marker genes. 
 
     Parameters
