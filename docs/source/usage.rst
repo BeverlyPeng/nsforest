@@ -6,25 +6,40 @@ Usage
 Installation
 ------------
 
-To use Lumache, first install it using pip:
+To install NSForest with pip: 
 
 .. code-block:: console
 
-   (.venv) $ pip install nsforest
+   $ pip install nsforest
 
-   conda activate nsforest
+To install NSForest via Github: 
+
+.. code-block:: console
+
+   $ git clone https://github.com/JCVenterInstitute/NSForest.git
+
+   $ cd NSForest
+
+   $ conda env create -f nsforest.yml
+
+   $ conda activate nsforest
+
+.. _running:
+
+Running
+-------
 
 Running NSForest
 
 .. code-block:: console
 
-   (.env) $ python3 nsforest -a ${input_folder}/arguments_${prefix}.csv 
+   (nsforest) $ python3 nsforest -a ${input_folder}/arguments_${prefix}.csv 
 
 Parallelizing NSForest
 
 .. code-block:: console
 
-   (.env) $ python3 nsforest -a ${input_folder}/arguments_${prefix}.csv -c "${cluster}"
+   (nsforest) $ python3 nsforest -a ${input_folder}/arguments_${prefix}.csv -c "${cluster}"
 
 Creating recipes
 ----------------
