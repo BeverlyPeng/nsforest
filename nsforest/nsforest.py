@@ -10,10 +10,12 @@ import myrandomforest
 import mydecisiontreeevaluation
 
 # v4.0 includes new parameter, "gene_selection," which determines whether BinaryFirst is used or not and its cutoff value
-def NSForest(adata, cluster_header = None, medians_header = None, binary_scores_header = None, 
-             cluster_list = None, gene_selection = "BinaryFirst_high",
-             n_trees = 1000, n_jobs = -1, beta = 0.5, n_top_genes = 15, n_binary_genes = 10, n_genes_eval = 6,
-             output_folder = None, outputfilename = None):
+def NSForest(adata, cluster_header: str, medians_header: str, binary_scores_header: str, 
+             cluster_list: list | None = [], gene_selection: str | None = "BinaryFirst_high",
+             n_trees: int | None = 1000, n_jobs: int | None = -1, 
+             beta: float | None = 0.5, 
+             n_top_genes: int | None = 15, n_binary_genes: int | None = 10, n_genes_eval: int | None = 6,
+             output_folder: str | None = "outputs", outputfilename: str | None = ""):
     
     """\
     Performs NSForest algorithm to find an optimal list of marker genes. 
