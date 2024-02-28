@@ -25,29 +25,30 @@ def NSForest(adata, cluster_header = None, medians_header = None, binary_scores_
     cluster_header
         Column name in `adata`'s `.obs` representing cell annotation.
     medians_header
-        medians_header. 
+        Column name in `adata`'s `.varm` storing median expression matrix. 
     binary_scores_header
-        binary_scores_header. 
+        Column name in `adata`'s `.varm` storing binary score matrix.
     cluster_list
-        cluster_list. 
+        For subsetting analysis for specified cell annotation. Used for parallelizing code. 
     gene_selection
-        gene_selection.
+        Degree of filtering genes by binary score. 
     n_trees
-        n_trees. 
+        Number of n_estimators in sklearn.ensemble's RandomForestClassifier. 
     n_jobs
-        n_jobs. 
+        Number of jobs in sklearn.ensemble's RandomForestClassifier. 
     beta
-        beta. 
+        Beta value in sklearn.metrics's fbeta_score
     n_top_genes
-        n_top_genes. 
+        Taking the top `n_top_genes` ranked by sklearn.ensemble's RandomForestClassifier for sklearn.tree's DecisionTreeClassifier. 
     n_binary_genes
-        n_binary_genes. 
+        Taking the top `n_binary_genes` ranked by binary score for supplementary table output. 
     n_genes_eval
-        n_genes_eval. 
+        Taking the top `n_genes_eval` ranked by binary score as input for sklearn.tree's DecisionTreeClassifier. 
     output_folder
-        output_folder. 
+        Specified output folder name. Created if doesn't exist. 
     outputfilename
-        outputfilename. 
+        Specified prefix for all output files. 
+
     """
 
     ##-----
