@@ -1,45 +1,35 @@
-Usage
-=====
+# Usage
 
-.. _installation:
-
-Installation
-------------
+## Installation
 
 To install NSForest with pip: 
 
-.. code-block:: console
-
-   $ pip install nsforest
+```shell
+pip install nsforest
+```
 
 To install NSForest via Github: 
 
-.. code-block:: console
+```shell
+git clone https://github.com/JCVenterInstitute/NSForest.git
+cd NSForest
+conda env create -f nsforest.yml
+conda activate nsforest
+```
 
-   $ git clone https://github.com/JCVenterInstitute/NSForest.git
-
-   $ cd NSForest
-
-   $ conda env create -f nsforest.yml
-
-   $ conda activate nsforest
-
-.. _running:
-
-Running
--------
+## Running
 
 Running NSForest
 
-.. code-block:: console
-
-   (nsforest) $ python3 nsforest -a ${input_folder}/arguments_${prefix}.csv 
+```shell
+python3 nsforest -a ${input_folder}/arguments_${prefix}.csv 
+```
 
 Parallelizing NSForest
 
-.. code-block:: console
-
-   (nsforest) $ python3 nsforest -a ${input_folder}/arguments_${prefix}.csv -c "${cluster}"
+```shell
+python3 nsforest -a ${input_folder}/arguments_${prefix}.csv -c "${cluster}"
+```
 
 Creating recipes
 ----------------
