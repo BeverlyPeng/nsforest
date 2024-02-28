@@ -26,3 +26,4 @@ Contents
    myrandomforest
    mydecisiontreeevaluation
    decisiontreewithmarkerlist
+   calculate_diagonals
