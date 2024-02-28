@@ -21,5 +21,8 @@ Contents
 .. toctree::
 
    usage
-   nsforest
    api
+   nsforest
+   myrandomforest
+   mydecisiontreeevaluation
+   decisiontreewithmarkerlist
