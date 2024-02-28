@@ -10,12 +10,10 @@ import myrandomforest
 import mydecisiontreeevaluation
 
 # v4.0 includes new parameter, "gene_selection," which determines whether BinaryFirst is used or not and its cutoff value
-def NSForest(adata, cluster_header: str, medians_header: str, binary_scores_header: str, 
-             cluster_list: list | None = [], gene_selection: str | None = "BinaryFirst_high",
-             n_trees: int | None = 1000, n_jobs: int | None = -1, 
-             beta: float | None = 0.5, 
-             n_top_genes: int | None = 15, n_binary_genes: int | None = 10, n_genes_eval: int | None = 6,
-             output_folder: str | None = "outputs", outputfilename: str | None = ""):
+def NSForest(adata, cluster_header, medians_header, binary_scores_header, 
+             cluster_list = [], gene_selection = "BinaryFirst_high",
+             n_trees = 1000, n_jobs = -1, beta = 0.5, n_top_genes = 15, n_binary_genes = 10, n_genes_eval = 6,
+             output_folder = "outputs", outputfilename = ""):
     
     """\
     Performs NSForest algorithm to find an optimal list of marker genes. 
@@ -23,9 +21,9 @@ def NSForest(adata, cluster_header: str, medians_header: str, binary_scores_head
     Parameters
     ----------
     adata
-        Annotated data matrix.
+        AnnData. Annotated data matrix.
     cluster_header
-        Column in `adata`'s `.obs` representing cell annotation.
+        Column in `adata`'s `.obs` storing cell annotation.
     medians_header
         Column in `adata`'s `.varm` storing median expression matrix. 
     binary_scores_header
@@ -33,7 +31,7 @@ def NSForest(adata, cluster_header: str, medians_header: str, binary_scores_head
     cluster_list
         For subsetting by specified cell annotations. Used for parallelizing NSForest. 
     gene_selection
-        Level of filtering genes by binary score. Options: [None, "BinaryFirst_high", "BinaryFirst_moderate", "BinaryFirst_low"]
+        Level of filtering genes by binary score. Options: [None, "BinaryFirst_high", "BinaryFirst_moderate", "BinaryFirst_low"]. None includes all genes. BinaryFirst_high includes genes with binary scores > 2 std. BinaryFirst_moderate includes genes with binary scores > 1 std. BinaryFirst_low includes genes with binary scores > median. 
     n_trees
         Number of `n_estimators` in sklearn.ensemble's RandomForestClassifier. 
     n_jobs
@@ -41,16 +39,15 @@ def NSForest(adata, cluster_header: str, medians_header: str, binary_scores_head
     beta
         Beta value in sklearn.metrics's fbeta_score. 
     n_top_genes
-        Taking the top `n_top_genes` ranked by sklearn.ensemble's RandomForestClassifier for sklearn.tree's DecisionTreeClassifier. 
+        Taking the top `n_top_genes` ranked by sklearn.ensemble's RandomForestClassifier as input for sklearn.tree's DecisionTreeClassifier. 
     n_binary_genes
         Taking the top `n_binary_genes` ranked by binary score for supplementary table output. 
     n_genes_eval
         Taking the top `n_genes_eval` ranked by binary score as input for sklearn.tree's DecisionTreeClassifier. 
     output_folder
-        Specified output folder name. Created if doesn't exist. 
+        Output folder name. Created if doesn't exist. 
     outputfilename
-        Specified prefix for all output files. 
-
+        Prefix for all output files. 
     """
 
     ##-----
