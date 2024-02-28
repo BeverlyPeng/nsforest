@@ -11,19 +11,19 @@ def myRandomForest(adata, df_dummies, cl, n_trees, n_jobs, n_top_genes, binary_d
 
     Parameters
     ----------
-    adata
+    adata: AnnData
         Annotated data matrix.
-    df_dummies
-        Dummy dataframe  for one vs all Random Forest model. 
-    cl
+    df_dummies: pd.DataFrame
+        Dummy dataframe for one vs all Random Forest model. 
+    cl: str
         Specified cell annotation. 
-    n_trees
+    n_trees: int
         Number of `n_estimators` in sklearn.ensemble's RandomForestClassifier.
-    n_jobs
+    n_jobs: int
         Number of `n_jobs` in sklearn.ensemble's RandomForestClassifier. 
-    n_top_genes
+    n_top_genes: int
         Taking the top `n_top_genes` ranked by sklearn.ensemble's RandomForestClassifier for sklearn.tree's DecisionTreeClassifier. 
-    binary_dummies
+    binary_dummies: pd.DataFrame
         Dataframe of binary scores filtered by `gene_selection`. 
     
     """
