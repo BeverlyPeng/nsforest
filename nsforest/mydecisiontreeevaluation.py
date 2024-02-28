@@ -15,17 +15,17 @@ def myDecisionTreeEvaluation(adata, df_dummies, cl, genes_eval, beta, exact_gene
 
     Parameters
     ----------
-    adata
+    adata: AnnData
         Annotated data matrix.
-    df_dummies
-        Dummy dataframe  for one vs all Random Forest model. 
-    cl
+    df_dummies: pd.DataFrame
+        Dummy dataframe for one vs all model. 
+    cl: str
         Specified cell annotation. 
-    genes_eval
+    genes_eval: list
         List of genes to find best combination for sklearn.tree's DecisionTreeClassifier. 
-    beta
+    beta: float (default: 0.5)
         Beta value in sklearn.metrics's fbeta_score. 
-    exact_genes_eval
+    exact_genes_eval: bool (default: False)
         Whether to use myDecisionTreeEvaluation on various combinations of `genes_eval`. 
     
     """
