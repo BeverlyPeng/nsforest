@@ -26,6 +26,12 @@ To install NSForest via Github:
 Running
 -------
 
+Set up metadata
+
+.. code-block:: console
+
+   (nsforest) $ python3 saving_metadata.py
+
 Running NSForest
 
 .. code-block:: console
